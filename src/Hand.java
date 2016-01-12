@@ -8,5 +8,7 @@ import java.util.List;
 public interface Hand {
     void addCard(Card c);
     List<Card> getCards();
+    List<Card> getCardsSortedByDenomination();
+    int getHighestCardValue();
 
 }

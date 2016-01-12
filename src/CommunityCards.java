@@ -8,7 +8,7 @@ import java.util.Set;
  * Date: 16-01-12
  * Project: Poker
  */
-public class CommunityCards implements Hand {
+public class CommunityCards  {
 
     final int MAX_ALLOWED_CARDS = 5;
     private List<Card> cards = new ArrayList<>();

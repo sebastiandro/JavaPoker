@@ -72,6 +72,18 @@ public class Card implements Comparable<Card> {
         this.s = s;
     }
 
+    public int getValue() {
+        return this.d.getHighestValue();
+    }
+
+    public int getSecondValue() {
+        return this.getDenomination().secondValue;
+    }
+
+    public boolean hasSecondValue() {
+        return this.getDenomination().hasSecondValue();
+    }
+
     public void show() {
         this.visible = true;
     }
