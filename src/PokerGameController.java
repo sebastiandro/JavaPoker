@@ -34,7 +34,7 @@ public class PokerGameController implements GameController {
 
         for (ActivePokerPlayer ap : activePlayers) {
             System.out.println(ap.getName());
-            for(Card c : ap.getHand().getCards() ) {
+            for(Card c : ap.getHand().getCardsSortedByDenomination() ) {
                 System.out.println(c);
             }
         }

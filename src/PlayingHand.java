@@ -15,16 +15,17 @@ public class PlayingHand implements Hand {
 
     public void addCard(Card card) {
         this.cards.add(card);
-        System.out.println("Adding card: " + card);
     }
 
     public ArrayList<Card> getCardsSortedByDenomination() {
         ArrayList<Card> newCards = new ArrayList<>();
-        Collections.sort(newCards, new PlayingHandValueComparator());
 
         for (Card c : getCards()) {
             newCards.add(c);
         }
+
+        Collections.sort(newCards, new PlayingHandValueComparator());
+
         return newCards;
     }
 
