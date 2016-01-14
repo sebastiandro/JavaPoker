@@ -14,6 +14,10 @@ public class PokerDeck implements Deck {
         this.shuffle();
     }
 
+    public void burnCard() {
+        this.cards.remove(0);
+    }
+
     public void shuffle() {
         long seed = System.nanoTime();
         Collections.shuffle(this.cards, new Random(seed));

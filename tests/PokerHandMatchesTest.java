@@ -13,13 +13,7 @@ public class PokerHandMatchesTest {
 
     }
 
-    @Test
-    public void testGetHandValue() throws Exception {
-
-    }
-
-    @Test
-    public void testIsRoyalFlush() throws Exception {
+    private PlayingHand getRoyalFlush() {
         PlayingHand newHand = new PlayingHand();
         newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
         newHand.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
@@ -27,8 +21,21 @@ public class PokerHandMatchesTest {
         newHand.addCard(new Card(Card.Denomination.JACK, Card.Suit.HEARTS));
         newHand.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
 
-        PokerHandMatches phm = new PokerHandMatches(newHand);
+        return newHand;
+    }
 
+    @Test
+    public void testGetHandValue() throws Exception {
+        PlayingHand royalFlush = getRoyalFlush();
+
+        PokerHandMatches phm = new PokerHandMatches(getRoyalFlush());
+        assertTrue(phm.getHandValue() == 10014);
+
+    }
+
+    @Test
+    public void testIsRoyalFlush() throws Exception {
+        PokerHandMatches phm = new PokerHandMatches(getRoyalFlush());
         assertTrue("Royal Flush test failed with correct Hand", phm.isRoyalFlush());
 
         PlayingHand anotherHand = new PlayingHand();

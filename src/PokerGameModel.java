@@ -7,21 +7,13 @@ import java.util.*;
  * Date: 16-01-10
  * Project: Poker
  */
-public class PokerGameModel implements GameModel {
+public class PokerGameModel extends Thread implements GameModel {
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     Set<Player> players = new HashSet<>();
     PokerRound currentPokerRound;
     private boolean isRunning;
-
-
-    public PokerGameModel() {
-    }
-
-    public void start() {
-        this.isRunning = true;
-    }
 
     public void beginNewRound() {
         this.currentPokerRound = new PokerRound(this.players);
@@ -35,16 +27,18 @@ public class PokerGameModel implements GameModel {
         return this.players;
     }
 
-    public void stop() {
-        this.isRunning = false;
-    }
-
     public boolean isRunning() {
         return this.isRunning;
     }
 
     public void startRound() {
         this.currentPokerRound = new PokerRound(this.players);
+    }
+
+    public PokerRound getCurrentPokerRound() {
+        if ( this.currentPokerRound == null )
+            throw new IllegalStateException();
+        return this.currentPokerRound;
     }
 
     public void endRound() {
@@ -61,4 +55,16 @@ public class PokerGameModel implements GameModel {
         this.pcs.removePropertyChangeListener(observer);
     }
 
+    @Override
+    public void run() {
+        isRunning = true;
+        while (isRunning) {
+            startRound();
+            this.currentPokerRound.start();
+
+            while (this.currentPokerRound.isRunning()) {
+
+            }
+        }
+    }
 }

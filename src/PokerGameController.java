@@ -27,18 +27,7 @@ public class PokerGameController implements GameController {
             System.out.println(p);
         }
 
-        game.startRound();
-        game.currentPokerRound.giveOutCards();
-
-        Set<ActivePokerPlayer> activePlayers = game.currentPokerRound.getActivePlayers();
-
-        for (ActivePokerPlayer ap : activePlayers) {
-            System.out.println(ap.getName());
-            for(Card c : ap.getHand().getCardsSortedByDenomination() ) {
-                System.out.println(c);
-            }
-        }
-
+        game.start();
 
     }
 

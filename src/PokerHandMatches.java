@@ -14,9 +14,47 @@ public class PokerHandMatches {
         this.hand = hand;
     }
 
-    public int getHandValue(PlayingHand hand) {
-        List<Card> cards = hand.getCards();
-        return 0;
+    public int getHandValue() {
+
+        int score = hand.getHighestCardValue();
+
+        if ( isRoyalFlush() ) {
+            return score + 10000;
+        }
+
+        if ( isStraightFlush() ) {
+            return score + 9000;
+        }
+
+        if ( isFourOfAKind() ) {
+            return score + 8000;
+        }
+
+        if ( isFullHouse() ) {
+            return score + 7000;
+        }
+
+        if ( isFlush() ) {
+            return score + 6000;
+        }
+
+        if ( isStraight() ) {
+            return score + 5000;
+        }
+
+        if ( isThreeOfaKind() ) {
+            return score + 4000;
+        }
+
+        if ( isTwoPair() ) {
+            return score + 3000;
+        }
+
+        if ( isPair() ) {
+            return score + 2000;
+        }
+
+        return score;
     }
 
     public boolean isRoyalFlush() {
