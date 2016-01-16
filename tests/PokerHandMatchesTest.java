@@ -24,169 +24,187 @@ public class PokerHandMatchesTest {
         return newHand;
     }
 
-    @Test
-    public void testGetHandValue() throws Exception {
-        PlayingHand royalFlush = getRoyalFlush();
+    private PlayingHand getStraightFlush() {
+        PlayingHand straightFlush = new PlayingHand();
+        straightFlush.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
+        straightFlush.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.HEARTS));
+        straightFlush.addCard(new Card(Card.Denomination.JACK, Card.Suit.HEARTS));
+        straightFlush.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
+        straightFlush.addCard(new Card(Card.Denomination.NINE, Card.Suit.HEARTS));
 
-        PokerHandMatches phm = new PokerHandMatches(getRoyalFlush());
-        assertTrue(phm.getHandValue() == 10014);
-
+        return straightFlush;
     }
+
+    private PlayingHand getFourOfAKind() {
+        PlayingHand fourOfKind = new PlayingHand();
+        fourOfKind.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
+        fourOfKind.addCard(new Card(Card.Denomination.KING, Card.Suit.SPADES));
+        fourOfKind.addCard(new Card(Card.Denomination.KING, Card.Suit.DIAMONDS));
+        fourOfKind.addCard(new Card(Card.Denomination.KING, Card.Suit.CLUBS));
+        fourOfKind.addCard(new Card(Card.Denomination.NINE, Card.Suit.HEARTS));
+
+        return fourOfKind;
+    }
+
+    private PlayingHand getFullHouse() {
+        PlayingHand fullHouse = new PlayingHand();
+        fullHouse.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
+        fullHouse.addCard(new Card(Card.Denomination.KING, Card.Suit.SPADES));
+        fullHouse.addCard(new Card(Card.Denomination.KING, Card.Suit.DIAMONDS));
+        fullHouse.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.CLUBS));
+        fullHouse.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.HEARTS));
+
+        return fullHouse;
+    }
+
+    private PlayingHand getFlush() {
+        PlayingHand flush = new PlayingHand();
+        flush.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
+        flush.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.HEARTS));
+        flush.addCard(new Card(Card.Denomination.NINE, Card.Suit.HEARTS));
+        flush.addCard(new Card(Card.Denomination.TWO, Card.Suit.HEARTS));
+        flush.addCard(new Card(Card.Denomination.FIVE, Card.Suit.HEARTS));
+
+        return flush;
+    }
+
+    private PlayingHand getStraightLowAce() {
+        PlayingHand straight = new PlayingHand();
+        straight.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
+        straight.addCard(new Card(Card.Denomination.TWO, Card.Suit.SPADES));
+        straight.addCard(new Card(Card.Denomination.THREE, Card.Suit.DIAMONDS));
+        straight.addCard(new Card(Card.Denomination.FOUR, Card.Suit.HEARTS));
+        straight.addCard(new Card(Card.Denomination.FIVE, Card.Suit.HEARTS));
+
+        return straight;
+    }
+
+    private PlayingHand getStraightHighAce() {
+        PlayingHand straight = new PlayingHand();
+        straight.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
+        straight.addCard(new Card(Card.Denomination.JACK, Card.Suit.SPADES));
+        straight.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.DIAMONDS));
+        straight.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
+        straight.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
+
+        return straight;
+    }
+
+    private PlayingHand getThreeOfAKind() {
+        PlayingHand threeOfAKind = new PlayingHand();
+        threeOfAKind.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
+        threeOfAKind.addCard(new Card(Card.Denomination.TEN, Card.Suit.CLUBS));
+        threeOfAKind.addCard(new Card(Card.Denomination.TEN, Card.Suit.DIAMONDS));
+        threeOfAKind.addCard(new Card(Card.Denomination.KING, Card.Suit.SPADES));
+        threeOfAKind.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
+
+        return threeOfAKind;
+    }
+
+    private PlayingHand getTwoPair() {
+        PlayingHand twoPair = new PlayingHand();
+        twoPair.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
+        twoPair.addCard(new Card(Card.Denomination.TEN, Card.Suit.CLUBS));
+        twoPair.addCard(new Card(Card.Denomination.KING, Card.Suit.DIAMONDS));
+        twoPair.addCard(new Card(Card.Denomination.KING, Card.Suit.SPADES));
+        twoPair.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
+
+        return twoPair;
+    }
+
+    private PlayingHand getPair() {
+        PlayingHand pair = new PlayingHand();
+        pair.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
+        pair.addCard(new Card(Card.Denomination.TEN, Card.Suit.CLUBS));
+        pair.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.DIAMONDS));
+        pair.addCard(new Card(Card.Denomination.KING, Card.Suit.SPADES));
+        pair.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
+
+        return pair;
+    }
+
 
     @Test
     public void testIsRoyalFlush() throws Exception {
-        PokerHandMatches phm = new PokerHandMatches(getRoyalFlush());
-        assertTrue("Royal Flush test failed with correct Hand", phm.isRoyalFlush());
-
-        PlayingHand anotherHand = new PlayingHand();
-        anotherHand.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
-        anotherHand.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.HEARTS));
-        anotherHand.addCard(new Card(Card.Denomination.JACK, Card.Suit.HEARTS));
-        anotherHand.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
-        anotherHand.addCard(new Card(Card.Denomination.NINE, Card.Suit.HEARTS));
-
-        PokerHandMatches phm2 = new PokerHandMatches(anotherHand);
-
-        assertFalse("Royal Flush check failed with incorrect hand", phm2.isRoyalFlush());
-
+        assertTrue("Royal Flush test failed with correct Hand", PokerHandMatches.isRoyalFlush(getRoyalFlush()));
+        assertFalse("Royal Flush check failed with incorrect hand", PokerHandMatches.isRoyalFlush(getStraightFlush()));
     }
 
     @Test
     public void testIsStraightFlush() throws Exception {
-        PlayingHand anotherHand = new PlayingHand();
+        PlayingHand straightFlush = getStraightFlush();
+        assertTrue("Straight Flush check failed with correct hand", PokerHandMatches.isStraightFlush(straightFlush));
 
-        anotherHand.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
-        anotherHand.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.HEARTS));
-        anotherHand.addCard(new Card(Card.Denomination.JACK, Card.Suit.HEARTS));
-        anotherHand.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
-        anotherHand.addCard(new Card(Card.Denomination.NINE, Card.Suit.HEARTS));
-
-        PokerHandMatches phm2 = new PokerHandMatches(anotherHand);
-
-        assertTrue("Straight Flush check failed with correct hand", phm2.isStraightFlush());
-
-        PlayingHand anotherHand2 = new PlayingHand();
-
-        anotherHand2.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
-        anotherHand2.addCard(new Card(Card.Denomination.TWO, Card.Suit.HEARTS));
-        anotherHand2.addCard(new Card(Card.Denomination.TWO, Card.Suit.HEARTS));
-        anotherHand2.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
-        anotherHand2.addCard(new Card(Card.Denomination.NINE, Card.Suit.HEARTS));
-
-        PokerHandMatches phm3 = new PokerHandMatches(anotherHand2);
-
-        assertFalse("Straight Flush check failed with incorrect hand", phm3.isStraightFlush());
+        PlayingHand straight = getStraightLowAce();
+        assertFalse("Straight Flush check failed with incorrect hand", PokerHandMatches.isStraightFlush(straight));
     }
 
     @Test
     public void testIsFourOfAKind() throws Exception {
+        PlayingHand fourOfAKind = getFourOfAKind();
+        assertTrue("Four of a kind check failed with correct hand", PokerHandMatches.isFourOfAKind(fourOfAKind));
 
+        PlayingHand threeOfAKind = getThreeOfAKind();
+        assertFalse("Four of a kind check failed with incorrect hand", PokerHandMatches.isFourOfAKind(threeOfAKind));
     }
 
     @Test
     public void testIsFullHouse() throws Exception {
+        PlayingHand fullHouse = getFullHouse();
+        assertTrue("Full house check failed with correct hand", PokerHandMatches.isFullHouse(fullHouse));
 
+        PlayingHand threeOfAKind = getThreeOfAKind();
+        assertFalse("Full house check failed with incorrect hand", PokerHandMatches.isFullHouse(threeOfAKind));
     }
 
     @Test
     public void testIsFlush() throws Exception {
-        PlayingHand newHand = new PlayingHand();
-        newHand.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.JACK, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.NINE, Card.Suit.HEARTS));
+        PlayingHand flush = getFlush();
+        assertTrue("Flush check failed", PokerHandMatches.isFlush(flush));
 
-        PokerHandMatches phm = new PokerHandMatches(newHand);
-
-        assertTrue("Flush check failed", phm.isFlush());
-
+        PlayingHand straight = getStraightHighAce();
+        assertFalse("Flush check failed for incorrect hand", PokerHandMatches.isFlush(straight));
     }
 
     @Test
     public void testIsStraight() throws Exception {
-        PlayingHand newHand = new PlayingHand();
+        PlayingHand straightLowAce = getStraightLowAce();
+        assertTrue("Straight check failed for Ace Low straight", PokerHandMatches.isStraight(straightLowAce));
 
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.KING, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.QUEEN, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.JACK, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.TEN, Card.Suit.HEARTS));
-
-        PokerHandMatches phm = new PokerHandMatches(newHand);
-
-        assertTrue("Straight check failed for Ace High straight", phm.isStraight());
-
-        PlayingHand newHand2 = new PlayingHand();
-
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.TWO, Card.Suit.DIAMONDS));
-        newHand.addCard(new Card(Card.Denomination.FIVE, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.THREE, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.FOUR, Card.Suit.HEARTS));
-
-        PokerHandMatches phm2 = new PokerHandMatches(newHand2);
-
-        assertTrue("Straight check failed for Ace High straight", phm2.isStraight());
+        PlayingHand straightHighAce = getStraightHighAce();
+        assertTrue("Straight check failed for Ace High straight", PokerHandMatches.isStraight(straightHighAce));
     }
 
     @Test
     public void testIsThreeOfaKind() throws Exception {
-        PlayingHand newHand = new PlayingHand();
-
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.DIAMONDS));
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.THREE, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.FOUR, Card.Suit.HEARTS));
-
-        PokerHandMatches phm2 = new PokerHandMatches(newHand);
-
-        assertTrue("Three of a Kind failed for correct hand", phm2.isThreeOfaKind());
+        PlayingHand threeOfAKind = getThreeOfAKind();
+        assertTrue("Three of a Kind failed for correct hand", PokerHandMatches.isThreeOfaKind(threeOfAKind));
     }
 
     @Test
     public void testIsTwoPair() throws Exception {
-        PlayingHand newHand = new PlayingHand();
-
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.DIAMONDS));
-        newHand.addCard(new Card(Card.Denomination.NINE, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.NINE, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.FOUR, Card.Suit.HEARTS));
-
-        PokerHandMatches phm2 = new PokerHandMatches(newHand);
-
-        assertTrue("Two Pair failed for correct hand", phm2.isTwoPair());
+        PlayingHand twoPair = getTwoPair();
+        assertTrue("Two Pair failed for correct hand", PokerHandMatches.isTwoPair(twoPair));
+        assertFalse("Two Pair failed for incorrect hand", PokerHandMatches.isTwoPair(getThreeOfAKind()));
     }
 
     @Test
     public void testIsPair() throws Exception {
-        PlayingHand newHand = new PlayingHand();
-
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.DIAMONDS));
-        newHand.addCard(new Card(Card.Denomination.EIGHT, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.NINE, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.FOUR, Card.Suit.HEARTS));
-
-        PokerHandMatches phm2 = new PokerHandMatches(newHand);
-
-        assertTrue("Pair failed for correct hand", phm2.isPair());
+        PlayingHand pair = getPair();
+        assertTrue("Pair failed for correct hand", PokerHandMatches.isPair(pair));
+        assertFalse("Pair failed for correct hand", PokerHandMatches.isPair(getStraightHighAce()));
     }
 
     @Test
-    public void testMatchesForCard() throws Exception {
-        PlayingHand newHand = new PlayingHand();
-
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.HEARTS));
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.DIAMONDS));
-        newHand.addCard(new Card(Card.Denomination.ACE, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.NINE, Card.Suit.SPADES));
-        newHand.addCard(new Card(Card.Denomination.FOUR, Card.Suit.HEARTS));
-
-        PokerHandMatches phm2 = new PokerHandMatches(newHand);
-
-        assertTrue("Pair failed for correct hand", phm2.isPair());
+    public void testGetHandValue() throws Exception {
+        assertTrue(getRoyalFlush().getHandValue() == 10000 + getRoyalFlush().getHighestCardValue());
+        assertTrue(getStraightFlush().getHandValue() == 9000 + getStraightFlush().getHighestCardValue());
+        assertTrue(getFourOfAKind().getHandValue() == 8000 + getFourOfAKind().getHighestCardValue());
+        assertTrue(getFullHouse().getHandValue() == 7000 + getFullHouse().getHighestCardValue());
+        assertTrue(getFlush().getHandValue() == 6000 + getFlush().getHighestCardValue());
+        assertTrue(getStraightHighAce().getHandValue() == 5000 + getStraightHighAce().getHighestCardValue());
+        assertTrue(getThreeOfAKind().getHandValue() == 4000 + getThreeOfAKind().getHighestCardValue());
+        assertTrue(getTwoPair().getHandValue() == 3000 + getTwoPair().getHighestCardValue());
+        assertTrue(getPair().getHandValue() == 2000 + getPair().getHighestCardValue());
     }
 }

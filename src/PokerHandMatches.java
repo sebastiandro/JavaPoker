@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,94 +8,74 @@ import java.util.List;
  */
 public class PokerHandMatches {
 
-    PlayingHand hand;
+    public static int getHandValue(PlayingHand hand) {
+        int score = hand.getTotalHandScore();
 
-
-    public PokerHandMatches(PlayingHand hand) {
-        this.hand = hand;
-    }
-
-    public int getHandValue() {
-
-        int score = hand.getHighestCardValue();
-
-        if ( isRoyalFlush() ) {
+        if (isRoyalFlush(hand)) {
             return score + 10000;
         }
 
-        if ( isStraightFlush() ) {
+        if (isStraightFlush(hand)) {
             return score + 9000;
         }
 
-        if ( isFourOfAKind() ) {
+        if (isFourOfAKind(hand)) {
             return score + 8000;
         }
 
-        if ( isFullHouse() ) {
+        if (isFullHouse(hand)) {
             return score + 7000;
         }
 
-        if ( isFlush() ) {
+        if (isFlush(hand)) {
             return score + 6000;
         }
 
-        if ( isStraight() ) {
+        if (isStraight(hand)) {
             return score + 5000;
         }
 
-        if ( isThreeOfaKind() ) {
+        if (isThreeOfaKind(hand) ) {
             return score + 4000;
         }
 
-        if ( isTwoPair() ) {
+        if (isTwoPair(hand)) {
             return score + 3000;
         }
 
-        if ( isPair() ) {
+        if (isPair(hand)) {
             return score + 2000;
         }
 
         return score;
     }
 
-    public boolean isRoyalFlush() {
-        return isStraightFlush() && this.hand.getHighestCardValue() == 14;
+    public static boolean isRoyalFlush(PlayingHand hand) {
+        return isStraightFlush(hand) && hand.getHighestCardValue() == 14;
     }
 
-    public boolean isStraightFlush() {
-        return isStraight() && isFlush();
+    public static boolean isStraightFlush(PlayingHand hand) {
+        return isStraight(hand) && isFlush(hand);
     }
 
-    public boolean isFourOfAKind() {
-
-        int differentDenominations = 0;
-        Card lastCard = null;
-
-        for(Card c : this.hand.getCards()) {
-            if (lastCard == null) {
-                lastCard = c;
-            } else {
-                if (c.getValue() != lastCard.getValue()) {
-                    differentDenominations++;
-                }
+    public static boolean isFourOfAKind(PlayingHand hand) {
+        for(Card c : hand.getCards()) {
+            int cardMatches = PokerHandMatches.matchesForCard(c, hand.getCards());
+            if (cardMatches == 4) {
+                return true;
             }
         }
 
-        if (differentDenominations > 2) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
-    public boolean isFullHouse() {
-
+    public static boolean isFullHouse(PlayingHand hand) {
         boolean hasThreeOfAKind = false;
         boolean hasPair = false;
 
-        for ( Card c : this.hand.getCards() ) {
+        for ( Card c : hand.getCards() ) {
 
-            int matches = this.matchesForCard(c, this.hand.getCards());
+            int matches = PokerHandMatches.matchesForCard(c, hand.getCards());
 
             if ( matches == 3 ) {
                 hasThreeOfAKind = true;
@@ -109,11 +90,10 @@ public class PokerHandMatches {
         return hasThreeOfAKind && hasPair;
     }
 
-    public boolean isFlush() {
-
+    public static boolean isFlush(PlayingHand hand) {
         Card.Suit currentSuit = null;
 
-        for(Card c : this.hand.getCards()) {
+        for(Card c : hand.getCards()) {
             if (currentSuit == null) {
                 currentSuit = c.getSuit();
             } else {
@@ -126,33 +106,38 @@ public class PokerHandMatches {
         return true;
     }
 
-    public boolean isStraight() {
-
-        List<Card> cardsSorted = this.hand.getCardsSortedByDenomination();
+    public static boolean isStraight(PlayingHand hand) {
+        List<Card> cardsSortedLowAce = hand.getCardsSortedByDenomination(true);
 
         // If we have an Ace, we'll try straight with the ace value of 1
-        if ( this.hand.numberOfAces() == 1 ) {
+        if ( hand.numberOfAces() == 1 ) {
 
             int lastValue = 0;
+            boolean isStraight = true;
 
+            for (Card c : cardsSortedLowAce) {
 
-            for (Card c : cardsSorted) {
                 if(lastValue == 0) {
-                    lastValue = c.getDenomination().getValue(); // get value returns 1 for ace
+                    lastValue = c.getValue(); // get value returns 1 for ace
                     continue;
                 }
 
-                if ( c.getDenomination().getValue() - lastValue != 1 ) {
+                if ( c.getValue() - lastValue != 1 ) {
+                    isStraight = false;
                     break;
                 }
-                lastValue = c.getDenomination().getValue();
+                lastValue = c.getValue();
             }
+
+            if (isStraight) return true;
 
         }
 
+
+        List<Card> cardsSortedHighAce = hand.getCardsSortedByDenomination();
         int lastValue = 0;
 
-        for ( Card c : cardsSorted ) {
+        for ( Card c : cardsSortedHighAce ) {
             if(lastValue == 0) {
                 lastValue = c.getDenomination().getHighestValue();
                 continue;
@@ -167,21 +152,20 @@ public class PokerHandMatches {
         return true;
     }
 
-    public boolean isThreeOfaKind() {
-        for ( Card c : this.hand.getCards() ) {
-            if ( this.matchesForCard(c, this.hand.getCards()) == 3 ) {
+    public static boolean isThreeOfaKind(PlayingHand hand) {
+        for ( Card c : hand.getCards() ) {
+            if ( PokerHandMatches.matchesForCard(c, hand.getCards()) == 3 ) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean isTwoPair() {
-
+    public static boolean isTwoPair(PlayingHand hand) {
         int numberOfCardsWithMatches = 0;
 
-        for ( Card c : this.hand.getCards() ) {
-            if ( this.matchesForCard(c, this.hand.getCards()) == 2 ) {
+        for ( Card c : hand.getCards() ) {
+            if ( PokerHandMatches.matchesForCard(c, hand.getCards()) == 2 ) {
                 numberOfCardsWithMatches++;
             }
         }
@@ -193,12 +177,11 @@ public class PokerHandMatches {
         return false;
     }
 
-    public boolean isPair() {
-
+    public static boolean isPair(PlayingHand hand) {
         int numberOfCardsWithMatches = 0;
 
-        for ( Card c : this.hand.getCards() ) {
-            if ( this.matchesForCard(c, this.hand.getCards()) == 2 ) {
+        for ( Card c : hand.getCards() ) {
+            if ( PokerHandMatches.matchesForCard(c, hand.getCards()) == 2 ) {
                 numberOfCardsWithMatches++;
             }
         }
@@ -210,7 +193,7 @@ public class PokerHandMatches {
         return false;
     }
 
-    public int matchesForCard(Card card, List<Card> cards) {
+    public static int matchesForCard(Card card, List<Card> cards) {
 
         int matches = 0;
 
@@ -222,4 +205,5 @@ public class PokerHandMatches {
 
         return matches;
     }
+
 }

@@ -7,31 +7,38 @@ import java.util.Comparator;
  */
 public class Card implements Comparable<Card> {
     public enum Denomination {
-        ACE(1, 14),
-        TWO(2),
-        THREE(3),
-        FOUR(4),
-        FIVE(5),
-        SIX(6),
-        SEVEN(7),
-        EIGHT(8),
-        NINE(9),
-        TEN(10),
-        JACK(11),
-        QUEEN(12),
-        KING(13);
+
+        ACE(1, 14, "Ace", "Aces"),
+        TWO(2, "Two", "Twos"),
+        THREE(3, "Three", "Threes"),
+        FOUR(4, "Four", "Fours"),
+        FIVE(5, "Five", "Fives"),
+        SIX(6, "Six", "Sixes"),
+        SEVEN(7, "Seven", "Sevens"),
+        EIGHT(8, "Eight", "Eights"),
+        NINE(9, "Nine", "Nines"),
+        TEN(10, "Ten", "Tens"),
+        JACK(11, "Jack", "Jacks"),
+        QUEEN(12, "Queen", "Queens"),
+        KING(13, "King", "Kings");
 
         private int value;
         private int secondValue;
+        private String readingName;
+        private String pluralName;
 
-        Denomination(int value) {
+        Denomination(int value, String readingName, String pluralName) {
             this.value = value;
+            this.readingName = readingName;
+            this.pluralName = pluralName;
             this.secondValue = 0;
         }
 
-        Denomination(int value, int secondValue) {
+        Denomination(int value, int secondValue, String readingName, String pluralName) {
             this.value = value;
             this.secondValue = secondValue;
+            this.readingName = readingName;
+            this.pluralName = pluralName;
         }
 
         int getValue() {
@@ -51,16 +58,35 @@ public class Card implements Comparable<Card> {
             return this.secondValue;
         }
 
+        String getReadingName() {
+            return this.readingName;
+        }
+
+        String getPluralName() {
+            return this.pluralName;
+        }
+
         boolean hasSecondValue() {
             return this.secondValue != 0;
         }
     }
 
     public enum Suit {
-        SPADES,
-        HEARTS,
-        DIAMONDS,
-        CLUBS
+        SPADES("Spades"),
+        HEARTS("Hearts"),
+        DIAMONDS("Diamonds"),
+        CLUBS("Clubs");
+
+        private String readingName;
+
+        Suit(String readingName) {
+            this.readingName = readingName;
+        }
+
+        public String getReadingName() {
+            return this.readingName;
+        }
+
     }
 
     private Denomination d;
@@ -72,12 +98,28 @@ public class Card implements Comparable<Card> {
         this.s = s;
     }
 
+    public String getReadableDenomination() {
+        return this.d.getReadingName();
+    }
+
+    public String getReadableDenominationPlural() {
+        return this.d.getPluralName();
+    }
+
+    public String getReadableSuit() {
+        return this.s.getReadingName();
+    }
+
     public int getValue() {
-        return this.d.getHighestValue();
+        return this.d.getValue();
     }
 
     public int getSecondValue() {
         return this.getDenomination().secondValue;
+    }
+
+    public int getHighestValue() {
+        return this.getDenomination().getHighestValue();
     }
 
     public boolean hasSecondValue() {
@@ -102,13 +144,31 @@ public class Card implements Comparable<Card> {
 
     @Override
     public int compareTo(Card c) {
-        if ( this.getDenomination().getHighestValue() > c.getDenomination().getHighestValue() ) {
+        if ( this.getHighestValue() > c.getHighestValue() ) {
             return 1;
         }
-        if ( this.getDenomination().getHighestValue() < c.getDenomination().getHighestValue() ) {
+        if ( this.getHighestValue() < c.getHighestValue() ) {
             return -1;
         }
         return 0;
+    }
+
+    public int compareTo(Card c, boolean useLowAce) {
+
+        if (useLowAce) {
+
+            if ( this.getValue() > c.getValue()) {
+                return 1;
+            }
+            if ( this.getValue() < c.getValue() ) {
+                return -1;
+            }
+            return 0;
+
+        } else {
+            return compareTo(c);
+        }
+
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class PokerPlayer implements Player {
     final int MAX_CARDS_ON_HAND = 2;
-    String name;
+    String name ="";
     List<Card> hand = new ArrayList<>();
     double cash;
 

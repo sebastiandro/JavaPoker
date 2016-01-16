@@ -5,12 +5,12 @@ import java.util.*;
  * Date: 16-01-12
  * Project: Poker
  */
-public class PlayingHand implements Hand, Cloneable {
+public class PlayingHand implements Cloneable {
 
-    private ArrayList<Card> cards;
+    private ArrayList<Card> cards = new ArrayList<>();
 
     public PlayingHand() {
-        this.cards = new ArrayList<>();
+
     }
 
     public PlayingHand(ArrayList<Card> cards) {
@@ -18,13 +18,14 @@ public class PlayingHand implements Hand, Cloneable {
     }
 
     public PlayingHand(Set<Card> cards) {
-        this.cards = new ArrayList<>();
         for (Card c: cards) {
-            this.cards.add(c);
+            this.addCard(c);
         }
     }
 
     public void addCard(Card card) {
+        if (this.cardAlreadyOnHand(card))
+            throw new IllegalArgumentException("Card was already added to hand");
         this.cards.add(card);
     }
 
@@ -40,13 +41,70 @@ public class PlayingHand implements Hand, Cloneable {
         return newCards;
     }
 
+    public ArrayList<Card> getCardsSortedByDenomination(boolean aceLow) {
+        ArrayList<Card> newCards = new ArrayList<>();
+
+        for (Card c : getCards()) {
+            newCards.add(c);
+        }
+
+        if (aceLow) {
+            Collections.sort(newCards, new PlayingHandValueComparator(aceLow));
+        } else {
+            Collections.sort(newCards, new PlayingHandValueComparator());
+        }
+
+        return newCards;
+    }
+
     private void setCards(ArrayList<Card> cards) {
         this.cards = cards;
     }
 
     public int getHandValue() {
-        PokerHandMatches phs = new PokerHandMatches(this);
-        return phs.getHandValue();
+        return PokerHandMatches.getHandValue(this);
+    }
+
+    public String getHandName() {
+
+        if (PokerHandMatches.isRoyalFlush(this)) {
+            return "Royal Straight Flush";
+        }
+
+        if (PokerHandMatches.isStraightFlush(this)) {
+            return "Straight Flush";
+        }
+
+        if (PokerHandMatches.isFourOfAKind(this)) {
+            return "Four of a Kind";
+        }
+
+        if (PokerHandMatches.isFullHouse(this)) {
+            return "Full House";
+        }
+
+        if (PokerHandMatches.isFlush(this)) {
+            return "Flush";
+        }
+
+        if (PokerHandMatches.isStraight(this)) {
+            return "Straight";
+        }
+
+        if (PokerHandMatches.isThreeOfaKind(this) ) {
+            return "Three of a Kind";
+        }
+
+        if (PokerHandMatches.isTwoPair(this)) {
+            return "Two Pair";
+        }
+
+        if (PokerHandMatches.isPair(this)) {
+            return "Pair";
+        }
+
+        Card kicker = this.getHighestDenomination();
+        return "High Card " + kicker.getReadableDenomination() + " of " + kicker.getReadableSuit();
     }
 
     public int getHighestCardValue() {
@@ -54,13 +112,26 @@ public class PlayingHand implements Hand, Cloneable {
 
         for ( Card c : this.cards ) {
             if (highestValue == 0) {
-                highestValue = c.getValue();
-            } else if ( c.getValue() > highestValue ) {
-                highestValue = c.getValue();
+                highestValue = c.getHighestValue();
+            } else if ( c.getHighestValue() > highestValue ) {
+                highestValue = c.getHighestValue();
             }
         }
 
         return highestValue;
+    }
+
+    public Card getHighestDenomination() {
+        ArrayList<Card> sortedCards = this.getCardsSortedByDenomination();
+        return sortedCards.get(sortedCards.size() -1);
+    }
+
+    public int getTotalHandScore() {
+        int totalScore = 0;
+        for(Card c: this.cards) {
+            totalScore += c.getHighestValue();
+        }
+        return totalScore;
     }
 
     public int numberOfAces() {
@@ -98,9 +169,7 @@ public class PlayingHand implements Hand, Cloneable {
             if (bestHand == null) {
                 bestHand = newHand;
             } else {
-                PokerHandMatches phsNewHand = new PokerHandMatches(newHand);
-                PokerHandMatches phsBestHand = new PokerHandMatches(bestHand);
-                if (phsNewHand.getHandValue() > phsBestHand.getHandValue()) {
+                if (PokerHandMatches.getHandValue(newHand) > PokerHandMatches.getHandValue(bestHand)) {
                     bestHand = newHand;
                 }
             }
@@ -113,13 +182,8 @@ public class PlayingHand implements Hand, Cloneable {
         return this.cards;
     }
 
-    public ArrayList<Card> getCardsCloned() {
-        ArrayList<Card> newCards = new ArrayList<>();
-
-        for (Card c : getCards()) {
-            newCards.add(c);
-        }
-        return newCards;
+    private boolean cardAlreadyOnHand(Card c) {
+        return this.cards.indexOf(c) != -1;
     }
 
 }

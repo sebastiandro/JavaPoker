@@ -26,6 +26,7 @@ public class Main {
         GameController gameController = new PokerGameController(gameModel);
         Component gameView = new PokerGameView(gameController);
 
+        /*
         frame.add(gameView);
         frame.setSize(1000, 715);
 
@@ -35,6 +36,6 @@ public class Main {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         frame.setVisible(true);
-        frame.requestFocus();
+        frame.requestFocus();*/
     }
 }

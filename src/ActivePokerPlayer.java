@@ -21,19 +21,6 @@ public class ActivePokerPlayer implements Player {
         hand.addCard(c);
     }
 
-    public List<Card> getCards() {
-        return hand.getCards();
-    }
-
-    public int getHandValue() {
-        PokerHandMatches phm = new PokerHandMatches(this.hand);
-        return phm.getHandValue();
-    }
-
-    public String getHandMatchName() {
-        return "";
-    }
-
     @Override
     public String getName() {
         return p.getName();
