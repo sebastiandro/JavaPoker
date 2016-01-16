@@ -193,7 +193,7 @@ public class PokerHandMatches {
         return false;
     }
 
-    public static int matchesForCard(Card card, List<Card> cards) {
+    private static int matchesForCard(Card card, List<Card> cards) {
 
         int matches = 0;
 
@@ -204,6 +204,23 @@ public class PokerHandMatches {
         }
 
         return matches;
+    }
+
+    public static ArrayList<Card> getAffectedCards(PlayingHand hand) {
+
+        if(isRoyalFlush(hand) || isStraightFlush(hand) || isFullHouse(hand) || isFlush(hand) || isStraight(hand) ) {
+            return hand.getCards();
+        }
+
+        ArrayList<Card> affectedCards = new ArrayList<>();
+
+        for (Card c: hand.getCards()) {
+            if (matchesForCard(c, hand.getCards()) > 1) {
+                affectedCards.add(c);
+            }
+        }
+
+        return affectedCards;
     }
 
 }

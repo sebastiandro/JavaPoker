@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d2633f4-ba48-4e0a-ae31-20f6bf22f208" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Poker/Hand.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Hand.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Poker/ActivePokerPlayer.class" afterPath="$PROJECT_DIR$/out/production/Poker/ActivePokerPlayer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Poker/Card.class" afterPath="$PROJECT_DIR$/out/production/Poker/Card.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Poker/Main.class" afterPath="$PROJECT_DIR$/out/production/Poker/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Poker/PlayingHand.class" afterPath="$PROJECT_DIR$/out/production/Poker/PlayingHand.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Poker/PlayingHandValueComparator.class" afterPath="$PROJECT_DIR$/out/production/Poker/PlayingHandValueComparator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Poker/PokerHandMatches.class" afterPath="$PROJECT_DIR$/out/production/Poker/PokerHandMatches.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Poker/PokerHandMatchesTest.class" afterPath="$PROJECT_DIR$/out/test/Poker/PokerHandMatchesTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Poker/PokerRound$1.class" afterPath="$PROJECT_DIR$/out/production/Poker/PokerRound$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Poker/PokerRound$RoundState.class" afterPath="$PROJECT_DIR$/out/production/Poker/PokerRound$RoundState.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Poker/PokerRound.class" afterPath="$PROJECT_DIR$/out/production/Poker/PokerRound.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ActivePokerPlayer.java" afterPath="$PROJECT_DIR$/src/ActivePokerPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Card.java" afterPath="$PROJECT_DIR$/src/Card.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlayingHand.java" afterPath="$PROJECT_DIR$/src/PlayingHand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlayingHandValueComparator.java" afterPath="$PROJECT_DIR$/src/PlayingHandValueComparator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PokerHandMatches.java" afterPath="$PROJECT_DIR$/src/PokerHandMatches.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/PokerHandMatchesTest.java" afterPath="$PROJECT_DIR$/tests/PokerHandMatchesTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PokerPlayer.java" afterPath="$PROJECT_DIR$/src/PokerPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PokerRound.java" afterPath="$PROJECT_DIR$/src/PokerRound.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -45,101 +29,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PlayingHand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PlayingHand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="162" column="42" selection-start-line="162" selection-start-column="42" selection-end-line="162" selection-end-column="42" />
-              <folding>
-                <element signature="e#276#277#0" expanded="true" />
-                <element signature="e#310#311#0" expanded="true" />
-                <element signature="e#1413#1414#0" expanded="true" />
-                <element signature="e#1447#1448#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PokerHandMatches.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PokerHandMatches.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayingHandTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/PlayingHandTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.964286">
-              <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PokerRound.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PokerRound.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4243421">
-              <caret line="135" column="84" selection-start-line="135" selection-start-column="84" selection-end-line="135" selection-end-column="84" />
+            <state vertical-scroll-proportion="0.375">
+              <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
               <folding>
                 <element signature="e#2271#2272#0" expanded="true" />
                 <element signature="e#2313#2314#0" expanded="true" />
                 <element signature="e#2754#2755#0" expanded="true" />
                 <element signature="e#2795#2796#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Card.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="110" column="5" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
-              <folding>
-                <element signature="e#1285#1286#0" expanded="true" />
-                <element signature="e#1321#1322#0" expanded="true" />
-                <element signature="e#1752#1753#0" expanded="true" />
-                <element signature="e#1799#1800#0" expanded="true" />
-                <element signature="e#1833#1834#0" expanded="true" />
-                <element signature="e#1879#1880#0" expanded="true" />
-                <element signature="e#2176#2177#0" expanded="true" />
-                <element signature="e#2230#2231#0" expanded="true" />
-                <element signature="e#2272#2273#0" expanded="true" />
-                <element signature="e#2319#2320#0" expanded="true" />
-                <element signature="e#2540#2541#0" expanded="true" />
-                <element signature="e#2586#2587#0" expanded="true" />
-                <element signature="e#2639#2640#0" expanded="true" />
-                <element signature="e#2684#2685#0" expanded="true" />
-                <element signature="e#2723#2724#0" expanded="true" />
-                <element signature="e#2769#2770#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Round.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Round.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PokerHandMatchesTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/PokerHandMatchesTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -196,10 +96,10 @@
         <option value="$PROJECT_DIR$/tests/PlayingHandTest.java" />
         <option value="$PROJECT_DIR$/src/Card.java" />
         <option value="$PROJECT_DIR$/src/ActivePokerPlayer.java" />
-        <option value="$PROJECT_DIR$/src/PokerHandMatches.java" />
-        <option value="$PROJECT_DIR$/src/PlayingHand.java" />
         <option value="$PROJECT_DIR$/src/PokerPlayer.java" />
+        <option value="$PROJECT_DIR$/src/PokerHandMatches.java" />
         <option value="$PROJECT_DIR$/src/PokerRound.java" />
+        <option value="$PROJECT_DIR$/src/PlayingHand.java" />
       </list>
     </option>
   </component>
@@ -743,6 +643,8 @@
             <element signature="e#310#311#0" expanded="true" />
             <element signature="e#1413#1414#0" expanded="true" />
             <element signature="e#1447#1448#0" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1538#1539#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -806,6 +708,8 @@
             <element signature="e#310#311#0" expanded="true" />
             <element signature="e#1413#1414#0" expanded="true" />
             <element signature="e#1447#1448#0" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1538#1539#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -869,6 +773,8 @@
             <element signature="e#310#311#0" expanded="true" />
             <element signature="e#1413#1414#0" expanded="true" />
             <element signature="e#1447#1448#0" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1538#1539#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -897,13 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17462166">
           <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1079,37 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PlayingHand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="162" column="42" selection-start-line="162" selection-start-column="42" selection-end-line="162" selection-end-column="42" />
-          <folding>
-            <element signature="e#276#277#0" expanded="true" />
-            <element signature="e#310#311#0" expanded="true" />
-            <element signature="e#1413#1414#0" expanded="true" />
-            <element signature="e#1447#1448#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PokerHandMatches.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/PlayingHandTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.964286">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PokerPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14802632">
@@ -1139,10 +1007,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/PlayingHandTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.964286">
+          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PokerHandMatches.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="208" column="50" selection-start-line="208" selection-start-column="34" selection-end-line="208" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1234#1235#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PlayingHand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="216" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+          <folding>
+            <element signature="e#276#277#0" expanded="true" />
+            <element signature="e#310#311#0" expanded="true" />
+            <element signature="e#1413#1414#0" expanded="true" />
+            <element signature="e#1447#1448#0" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1538#1539#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PokerRound.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4243421">
-          <caret line="135" column="84" selection-start-line="135" selection-start-column="84" selection-end-line="135" selection-end-column="84" />
+        <state vertical-scroll-proportion="0.375">
+          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding>
             <element signature="e#2271#2272#0" expanded="true" />
             <element signature="e#2313#2314#0" expanded="true" />

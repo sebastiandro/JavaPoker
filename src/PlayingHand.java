@@ -68,42 +68,77 @@ public class PlayingHand implements Cloneable {
     public String getHandName() {
 
         if (PokerHandMatches.isRoyalFlush(this)) {
-            return "Royal Straight Flush";
+            return "Royal Straight Flush, - " + getLowCard().getReadableDenomination() +
+                    " to " + getHighCard().getReadableDenomination() +
+                    " of " + getHighCard().getReadableSuit();
         }
 
         if (PokerHandMatches.isStraightFlush(this)) {
-            return "Straight Flush";
+            return "Royal Straight Flush, - " + getLowCard().getReadableDenomination() +
+                    " to " + getHighCard().getReadableDenomination() +
+                    " of " + getHighCard().getReadableSuit();
         }
 
         if (PokerHandMatches.isFourOfAKind(this)) {
-            return "Four of a Kind";
+            ArrayList<Card> affectedCards = PokerHandMatches.getAffectedCards(this);
+            Card firstCard = affectedCards.get(0);
+            return "Four of a Kind - " + firstCard.getReadableDenominationPlural();
         }
 
         if (PokerHandMatches.isFullHouse(this)) {
-            return "Full House";
+            ArrayList<Card> affectedCards = PokerHandMatches.getAffectedCards(this);
+            ArrayList<String> denominations = new ArrayList<>();
+            for (Card c : affectedCards) {
+                if (denominations.indexOf(c.getReadableDenominationPlural()) == -1) {
+                    denominations.add(c.getReadableDenominationPlural());
+                }
+            }
+            return "Full House " + denominations.get(0) + " and " + denominations.get(1);
         }
 
         if (PokerHandMatches.isFlush(this)) {
-            return "Flush";
+            String cardsReadable = "";
+            ArrayList<Card> cardsSorted = this.getCardsSortedByDenomination();
+            for (Card c: cardsSorted) {
+
+                if (cardsReadable.equals("")) {
+                    cardsReadable += c.getReadableDenomination();
+                    continue;
+                }
+
+                cardsReadable += ", " + c.getReadableDenomination();
+            }
+            cardsReadable += " of " + cardsSorted.get(0).getReadableSuit();
+            return "Flush - " + cardsReadable;
         }
 
         if (PokerHandMatches.isStraight(this)) {
-            return "Straight";
+            return "Straight - " + getLowCard().getReadableDenomination() + " to " + getHighCard().getReadableDenomination();
         }
 
         if (PokerHandMatches.isThreeOfaKind(this) ) {
-            return "Three of a Kind";
+            ArrayList<Card> affectedCards = PokerHandMatches.getAffectedCards(this);
+            return "Three of a Kind - " + affectedCards.get(0).getReadableDenominationPlural();
         }
 
         if (PokerHandMatches.isTwoPair(this)) {
-            return "Two Pair";
+            ArrayList<Card> affectedCards = PokerHandMatches.getAffectedCards(this);
+            ArrayList<String> denominations = new ArrayList<>();
+            for (Card c : affectedCards) {
+                if (denominations.indexOf(c.getReadableDenominationPlural()) == -1) {
+                    denominations.add(c.getReadableDenominationPlural());
+                }
+            }
+            return "Two Pair - " + denominations.get(0) + " and " + denominations.get(1);
         }
 
         if (PokerHandMatches.isPair(this)) {
-            return "Pair";
+            ArrayList<Card> affectedCards = PokerHandMatches.getAffectedCards(this);
+
+            return "Pair of " + affectedCards.get(0).getReadableDenominationPlural();
         }
 
-        Card kicker = this.getHighestDenomination();
+        Card kicker = this.getHighCard();
         return "High Card " + kicker.getReadableDenomination() + " of " + kicker.getReadableSuit();
     }
 
@@ -121,9 +156,14 @@ public class PlayingHand implements Cloneable {
         return highestValue;
     }
 
-    public Card getHighestDenomination() {
+    public Card getHighCard() {
         ArrayList<Card> sortedCards = this.getCardsSortedByDenomination();
         return sortedCards.get(sortedCards.size() -1);
+    }
+
+    public Card getLowCard() {
+        ArrayList<Card> sortedCards = this.getCardsSortedByDenomination();
+        return sortedCards.get(0);
     }
 
     public int getTotalHandScore() {

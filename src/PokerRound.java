@@ -133,7 +133,7 @@ public class PokerRound implements Round{
 
         ActivePokerPlayer winner = decideWinner();
 
-        System.out.println(winner.getName() + " vann med handen " + winner.getHand().getHandName());
+        System.out.println(winner.getName() + " vann med handen: " + winner.getHand().getBestHandFromCombination(this.communityCards).getHandName());
 
         System.exit(1);
 
